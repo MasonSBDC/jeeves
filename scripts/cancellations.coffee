@@ -1,10 +1,11 @@
 # Description:
-#   Tells the user info about our clients. Info taken from a specified
+#   Tells the user if/when we had any cancellations. Info taken from a specified
 #   Smartsheet document.
 #
 # Dependencies: none.
 #
-# Configuration: none.
+# Configuration:
+#   HUBOT_SMARTSHEET_API_KEY
 #
 # Commands:
 #   clients - Lists names of all Mason SBDC clients.
