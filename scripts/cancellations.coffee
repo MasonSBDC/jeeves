@@ -11,6 +11,3 @@
 #   clients - Lists names of all Mason SBDC clients.
 #   clients <employeeName> - Lists names of clients assigned to an
 #                                 employee.
-#
-# Notes:
-#   API Token: 2yh1b10q140dt7hkkr2odytu1x
