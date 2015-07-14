@@ -6,13 +6,11 @@
 #
 # Configuration:
 #   HUBOT_SMARTSHEET_API_KEY
+#   HUBOT_SMARTSHEET_DEFAULT_SHEET
 #
 # Commands:
-#   clients - Lists names of all Mason SBDC clients.
-#   clients <employeeName> - Lists names of clients assigned to an
-#                                 employee.
+#   ss-clients - Lists names of all Mason SBDC clients.
 
 module.exports = (robot) ->
-  robot.hear /list clients\s*(.*)?$/i, (res) ->
-
-  #
+  robot.hear /clients/i, (res) ->
+    
