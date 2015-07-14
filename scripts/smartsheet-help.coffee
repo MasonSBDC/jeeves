@@ -21,4 +21,8 @@ module.exports = (robot) ->
       .header(Authorization: "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}", 'Content-Type': 'application/json')
       .get(err, res, body) ->
         data = JSON.parse body
-        res.send "The current default sheet is #{data.name}."
+        if err
+          res.send "Encountered an error: #{err}."
+          return
+        else
+          res.send "The current default sheet is #{data.name}."
