@@ -10,6 +10,9 @@
 #
 # Commands:
 #   ss-default - Tells the user the current default sheet.
+#
+# Notes:
+#   Adding this comment because it won't push to GitHub for some reason.
 
 module.exports = (robot) ->
   robot.hear /ss-default/i, (res) ->
