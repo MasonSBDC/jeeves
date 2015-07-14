@@ -13,4 +13,4 @@
 
 module.exports = (robot) ->
   robot.hear /clients/i, (res) ->
-    
+    res.send "I guess this works."

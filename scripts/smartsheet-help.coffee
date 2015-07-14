@@ -6,7 +6,7 @@
 #
 # Configuration:
 #   HUBOT_SMARTSHEET_API_KEY
-#   HUBOT_SMARTSHEET_DEFAULT_SHEET_ID - 8731584527394692
+#   HUBOT_SMARTSHEET_DEFAULT_SHEET_ID
 #
 # Commands:
 #   ss-default - Tells the user the current default sheet.
@@ -20,6 +20,5 @@ module.exports = (robot) ->
     robot.http(url)
       .header("Authorization", "#{process.env.HUBOT_SMARTSHEET_API_KEY}")
       .get(err, res, body) ->
-        data = JSON.parse(body)
-        response = "The current default sheet is #{data.name}"
-        res.send response
+        data = JSON.parse body
+        res.send "The current default sheet is #{data.name}."
