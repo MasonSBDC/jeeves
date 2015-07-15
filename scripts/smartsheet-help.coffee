@@ -27,15 +27,12 @@ module.exports = (robot) ->
       .header('Authorization': "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}", 'Accept': 'application/json')
       # The GET request. err = possible error, res = response specified in
       # ss-default's constructor, body = the info from Smartsheet in JSON format.
-      .get(err, res, body) ->
+      .get() (err, res, body) ->
         # 'data' contains the info from Smartsheet in JSON format.
         data = JSON.parse body
-        ##if err
-          # Tell the user that there was an error and the error code. Listings
-          # for each error code can be found on the Smartsheet API website.
-          ##res.send "Encountered an error: #{err}."
-        ##  return
-        ##else
+        if res.statusCode isnt 200
+          res.send "Request didn't come back HTTP 200 :("
+          return
+        else
           # Tell the user the name of the current default sheet.
-          ##res.send "The current default sheet is #{data.name}."
-          res.send url
+          res.send "The current default sheet is #{data.name}."
