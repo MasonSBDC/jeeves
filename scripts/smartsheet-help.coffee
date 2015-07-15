@@ -17,7 +17,7 @@
 #   contain all of our client info from CenterIC.
 
 module.exports = (robot) ->
-  robot.hear /ss-default/i, (res) ->
+  robot.hear /ss default/i, (res) ->
     url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SMARTSHEET_DEFAULT_SHEET_ID}"
     robot.http(url)
       # Smartsheet API requires that the header contain 'Authorization: "Bearer
