@@ -9,8 +9,8 @@
 #   HUBOT_SMARTSHEET_DEFAULT_SHEET
 #
 # Commands:
-#   ss-clients - Lists names of all Mason SBDC clients.
+#   ss clients - Lists names of all Mason SBDC clients.
 
 module.exports = (robot) ->
-  robot.hear /clients/i, (res) ->
+  robot.hear /ss clients/i, (res) ->
     res.send "I guess this works."

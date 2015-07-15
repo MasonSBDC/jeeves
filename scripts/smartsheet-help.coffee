@@ -24,7 +24,7 @@ module.exports = (robot) ->
       # <API key>"'. 'Content-Type' is something I saw on StackOverflow and
       # the hubot docs as something I should put in there. Not sure if the
       # command is '.header' or '.headers'.
-      .header('Authorization': "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}", 'Content-Type': 'application/json')
+      .header('Authorization': "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}", 'Accept': 'application/json')
       # The GET request. err = possible error, res = response specified in
       # ss-default's constructor, body = the info from Smartsheet in JSON format.
       .get(err, res, body) ->
