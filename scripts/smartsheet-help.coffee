@@ -30,11 +30,12 @@ module.exports = (robot) ->
       .get(err, res, body) ->
         # 'data' contains the info from Smartsheet in JSON format.
         data = JSON.parse body
-        if err
+        ##if err
           # Tell the user that there was an error and the error code. Listings
           # for each error code can be found on the Smartsheet API website.
-          res.send "Encountered an error: #{err}."
-          return
-        else
+          ##res.send "Encountered an error: #{err}."
+        ##  return
+        ##else
           # Tell the user the name of the current default sheet.
+          ##res.send "The current default sheet is #{data.name}."
           res.send url
