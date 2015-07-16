@@ -31,11 +31,12 @@ module.exports = (robot) ->
       .get() (err, res, body) ->
         # 'data' contains the info from Smartsheet in JSON format.
         data = JSON.parse(body)
-        if res.statusCode isnt 200
-          res.send "An error occurred when processing your request:
-                    #{res.statusCode}. The list of error codes can be found at
-                    http://bit.ly/ss-errors. Talk to the nearest code nerd for
-                    assistance."
-        else
+        res.send "Well, I got this far. What do you want from me, eh?"
+        #if res.statusCode isnt 200
+          #res.send "An error occurred when processing your request:
+          #          #{res.statusCode}. The list of error codes can be found at
+          #          http://bit.ly/ss-errors. Talk to the nearest code nerd for
+          #          assistance."
+        #else
           # Tell the user the name of the current default sheet.
-          res.send "The current default sheet is #{data.name}."
+          #res.send "The current default sheet is #{data.name}."
