@@ -17,6 +17,7 @@
 #   contain all of our client info from CenterIC.
 #
 #   To set the default sheet, run 'heroku config:set HUBOT_SMARTSHEET_DEFAULT_SHEET_ID=PASTE_ID_NUMBER_HERE'
+#   As of 7/16/15, the default sheet is 'JAY WILSON'.
 #
 #   For more info, check the README.
 
@@ -27,4 +28,13 @@ module.exports = (robot) ->
     robot.http(url)
       .headers(Authorization: auth, Accept: 'application/json')
       .get() (err, res, body) ->
-        res.send res.statusCode
+        data = JSON.parse(body)
+        res.send "Well, I got this far. What do you want from me, eh?"
+        if res.statusCode isnt 200
+          res.send "An error occurred when processing your request:
+                    #{res.statusCode}. The list of error codes can be found at
+                    http://bit.ly/ss-errors. Talk to the nearest code nerd for
+                    assistance."
+        else
+          # Tell the user the name of the current default sheet.
+          res.send "The current default sheet is #{data.name}."
