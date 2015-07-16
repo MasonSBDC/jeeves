@@ -36,7 +36,6 @@ module.exports = (robot) ->
                     #{res.statusCode}. The list of error codes can be found at
                     http://bit.ly/ss-errors. Talk to the nearest code nerd for
                     assistance."
-          return
         else
           # Tell the user the name of the current default sheet.
           res.send "The current default sheet is #{data.name}."
