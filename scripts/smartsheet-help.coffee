@@ -19,4 +19,5 @@
 module.exports = (robot) ->
   robot.hear /ss default/i, (res) ->
     url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SMARTSHEET_DEFAULT_SHEET_ID}"
-    res.send url
+    auth = "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}"
+    res.send url + " " + auth
