@@ -9,9 +9,11 @@ robot.http(url)
   # ss-default's constructor, body = the info from Smartsheet in JSON format.
   .get() (err, res, body) ->
     # 'data' contains the info from Smartsheet in JSON format.
-    data = JSON.parse body
+    data = JSON.parse(body)
     if res.statusCode isnt 200
-      res.send "Request didn't come back HTTP 200 :("
+      res.send "An error occurred when processing your request:
+                #{res.statusCode}. Find the nearest Jay the Intern or
+                code nerd for assistance."
       return
     else
       # Tell the user the name of the current default sheet.
