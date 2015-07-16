@@ -24,16 +24,4 @@ module.exports = (robot) ->
   robot.hear /ss default/i, (res) ->
     url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SMARTSHEET_DEFAULT_SHEET_ID}"
     auth = "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}"
-    robot.http(url)
-      .headers(Authorization: auth, Accept: 'application/json')
-      .get() (err, res, body) ->
-        data = JSON.parse(body)
-        res.send "Well, I got this far. What do you want from me, eh?"
-        if res.statusCode isnt 200
-          res.send "An error occurred when processing your request:
-                    #{res.statusCode}. The list of error codes can be found at
-                    http://bit.ly/ss-errors. Talk to the nearest code nerd for
-                    assistance."
-        else
-          # Tell the user the name of the current default sheet.
-          res.send "The current default sheet is #{data.name}."
+    res.send url + " + " + auth

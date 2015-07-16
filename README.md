@@ -132,7 +132,7 @@ Tells the user info about our clients at Mason SBDC, such as their names.
 Some miscellaneous scripts for Smartsheet stuff, like checking the default
 document.
 
-##### Code Notes (bc they took up so much comment space):
+##### Code Notes (because they took up so much comment space):
 
 Smartsheet API requires that the header contain 'Authorization: "Bearer
 <API key>"'. 'Accept' is something I saw on the blog of this guy who works at
