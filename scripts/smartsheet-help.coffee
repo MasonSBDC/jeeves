@@ -30,7 +30,7 @@ module.exports = (robot) ->
       # ss-default's constructor, body = the info from Smartsheet in JSON format.
       .get() (err, res, body) ->
         # 'data' contains the info from Smartsheet in JSON format.
-        data = JSON.parse(body)
+        #data = JSON.parse(body)
         res.send "Well, I got this far. What do you want from me, eh?"
         #if res.statusCode isnt 200
           #res.send "An error occurred when processing your request:
