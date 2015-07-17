@@ -1,2 +1,4 @@
 .DS_Store*
 .hubot_history
+/scripts/advanced-http.coffee
+/scripts/javascript/
