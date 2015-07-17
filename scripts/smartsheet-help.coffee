@@ -29,7 +29,7 @@ module.exports = (robot) ->
       .headers(Authorization: auth, Accept: 'application/json')
       .get() (err, res, body) ->
         data = JSON.parse(body)
-        res.send "Well, I got this far. What do you want from me, eh?"
+        msg.send "Well, I got this far. What do you want from me, eh?"
         if res.statusCode isnt 200
           msg.send "An error occurred when processing your request:
                     #{res.statusCode}. The list of error codes can be found at
