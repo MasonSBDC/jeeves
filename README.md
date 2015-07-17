@@ -121,6 +121,27 @@ repo.
 
 [hubot-scripts]: https://github.com/github/hubot-scripts
 
+## Jeeves-specific scripts
+
+### clients.coffee
+
+Tells the user info about our clients at Mason SBDC, such as their names.
+
+### smartsheet-help.coffee
+
+Some miscellaneous scripts for Smartsheet stuff, like checking the default
+document.
+
+##### Code Notes (because they took up so much comment space):
+
+Smartsheet API requires that the header contain 'Authorization: "Bearer
+<API key>"'. 'Accept' is something I saw on the blog of this guy who works at
+GitHub, so he probably knows what he's doing.
+
+.get(): The GET request. err = possible error, res = response specified in
+ss-default's constructor, body = the info from Smartsheet in JSON format.
+'data' contains the info from Smartsheet in JSON format.
+
 ##  Persistence
 
 If you are going to use the `hubot-redis-brain` package (strongly suggested),
