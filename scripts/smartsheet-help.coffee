@@ -16,9 +16,6 @@
 #   will search if no additional sheet is specified. This default sheet should
 #   contain all of our client info from CenterIC.
 #
-#   To set the default sheet, run 'heroku config:set HUBOT_SMARTSHEET_DEFAULT_SHEET_ID=PASTE_ID_NUMBER_HERE'
-#   As of 7/16/15, the default sheet is 'JAY WILSON'.
-#
 #   For more info, check the README.
 
 module.exports = (robot) ->
