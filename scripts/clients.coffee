@@ -1,12 +1,12 @@
 # Description:
 #   Tells the user info about our clients. Info taken from a specified
-#   data document.
+#   Smartsheet document.
 #
 # Dependencies: none.
 #
 # Configuration:
-#   HUBOT_data_API_KEY
-#   HUBOT_data_DEFAULT_SHEET_ID
+#   HUBOT_SMARTSHEET_API_KEY
+#   HUBOT_SMARTSHEET_DEFAULT_SHEET_ID
 #
 # Commands:
 #   ss clients - Lists names of all Mason SBDC clients.
@@ -28,8 +28,8 @@
 
 module.exports = (robot) ->
   robot.hear /ss clients/i, (msg) ->
-  	url = "https://api.data.com/2.0/sheets/#{process.env.HUBOT_data_DEFAULT_SHEET_ID}"
-    auth = "Bearer #{process.env.HUBOT_data_API_KEY}"
+  	url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SMARSHEET_DEFAULT_SHEET_ID}"
+    auth = "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}"
     colNum = -1
     # Get the columnId of the 'Name' column.
     robot.http(url)
