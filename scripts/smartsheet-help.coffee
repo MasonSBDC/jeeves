@@ -11,6 +11,9 @@
 # Commands:
 #   ss default - Tells the user the name of the current default sheet.
 #
+# Status:
+#   ss default - functional
+#
 # Notes:
 #   When interacting with Smartsheet, there will be a default sheet that jeeves
 #   will search if no additional sheet is specified. This default sheet should
