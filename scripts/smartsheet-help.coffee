@@ -16,6 +16,9 @@
 #   will search if no additional sheet is specified. This default sheet should
 #   contain all of our client info from CenterIC.
 #
+#   Maybe add a command that tells the user the ID numbers of the most
+#   frequently-searched documents. Like, top three.
+#
 #   For more info, check the README.
 
 module.exports = (robot) ->
