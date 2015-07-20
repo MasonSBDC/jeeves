@@ -9,7 +9,7 @@
 #   HUBOT_SMARTSHEET_DEFAULT_SHEET_ID
 #
 # Commands:
-#   ss default - Tells the user the current default sheet.
+#   ss default - Tells the user the name of the current default sheet.
 #
 # Notes:
 #   When interacting with Smartsheet, there will be a default sheet that jeeves
