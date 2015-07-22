@@ -75,13 +75,10 @@ module.exports = (robot) ->
           else
             return data.value
     # Populate clientNames with the names of our clients (once for each client)
-    # using getName. DO NOT PUSH TO HEROKU YET. Need to find a way to check if
-    # the value of the current cell (i.e. the name) is equal to the last value
-    # of clientNames (to ensure there aren't any duplicates). Might need to use
-    # pure JavaScript for this, if possible.
+    # using getName.
     for row, i in rows
       if clientNames[i] == getName(row, colNum)
-        clientNames.push getName(row, colNum)
+        clientNames.push getName(row, colNum) + "\n"
     # clientNames = (getName(rowId, colNum) + "\n" for rowId in rows)
 
     msg.send clientNames
