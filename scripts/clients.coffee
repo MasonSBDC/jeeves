@@ -28,10 +28,10 @@
 
 module.exports = (robot) ->
   robot.hear /ss clients/i, (msg) ->
-  	url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SMARTSHEET_DEFAULT_SHEET_ID}"
+    url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SMARTSHEET_DEFAULT_SHEET_ID}"
     auth = "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}"
     colNum = -1
-    rows = []
+    rowNums = []
     clientNames = []
     # Populate 'rows' with all row values from the default sheet and set
     # columnId to colNum.
@@ -46,7 +46,7 @@ module.exports = (robot) ->
                     assistance."
         else
           # Populate 'rows' with all rowId's from default sheet.
-          rows = row.id for row in data.rows
+          rowNums = (row.id for row in data.rows)
           # Parses 'columns' for column titled 'Name'. Stops when it finds it.
           for column in data.columns
             if column.title.toLowerCase() == "name"
@@ -76,7 +76,7 @@ module.exports = (robot) ->
             return data.value
     # Populate clientNames with the names of our clients (once for each client)
     # using getName.
-    for row, i in rows
+    for row, i in rowNums
       if clientNames[i] == getName(row, colNum)
         clientNames.push getName(row, colNum) + "\n"
     # clientNames = (getName(rowId, colNum) + "\n" for rowId in rows)
