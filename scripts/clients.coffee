@@ -28,7 +28,7 @@
 
 module.exports = (robot) ->
   robot.hear /ss clients/i, (msg) ->
-  	url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SMARSHEET_DEFAULT_SHEET_ID}"
+  	url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SMARTSHEET_DEFAULT_SHEET_ID}"
     auth = "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}"
     colNum = -1
     rows = []
