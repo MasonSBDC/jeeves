@@ -32,6 +32,7 @@ module.exports = (robot) ->
     auth = "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}"
     colNum = -1
     rows = []
+    clientNames = []
     # Populate 'rows' with all row values from the default sheet and set
     # columnId to colNum.
     robot.http(url)
@@ -47,14 +48,10 @@ module.exports = (robot) ->
           # Populate 'rows' with all rowId's from default sheet.
           rows = row.id for row in data.rows
           # Parses 'columns' for column titled 'Name'. Stops when it finds it.
-          # Sets columnId to 'colNum'. Note: to use regular JavaScript code in a
-          # CoffeeScript file, put the JavaScript code in backticks (`) and it'll
-          # be just fine. Just try and change it to CoffeeScript later.
-          `for (var i = 0; i < data.columns.length; i++) {
-            if (data.columns[i].title.toLowerCase() === "name")
-              colNum = data.columns[i].id;
-              break;
-          }`
+          for column in data.columns
+            if column.title.toLowerCase() == "name"
+              colNum = column.id
+              break
     # If colNum = -1, tell user the column wasn't found and must be titled
     # 'Name' (no quotes).
     if colNum == -1
@@ -82,6 +79,9 @@ module.exports = (robot) ->
     # the value of the current cell (i.e. the name) is equal to the last value
     # of clientNames (to ensure there aren't any duplicates). Might need to use
     # pure JavaScript for this, if possible.
-    clientNames = (getName(rowId, colNum) + "\n" for rowId in rows)
+    for row, i in rows
+      if clientNames[i] == getName(row, colNum)
+        clientNames.push getName(row, colNum)
+    # clientNames = (getName(rowId, colNum) + "\n" for rowId in rows)
 
     msg.send clientNames
