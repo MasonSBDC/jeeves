@@ -27,8 +27,13 @@
 module.exports = (robot) ->
   robot.hear /yo|hey/i, (msg) ->
     msg.send "WHAT"
+  
   robot.hear /YOU'RE ALIVE/i, (msg) ->
     msg.send "WOOOOO YA DID IT BOY"
+
+  robot.hear /thanks|thank you/i, (msg) ->
+    msg.send "Sure, whatever."
+  
   robot.hear /ss default/i, (msg) ->
     url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SMARTSHEET_DEFAULT_SHEET_ID}"
     auth = "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}"
