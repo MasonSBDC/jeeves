@@ -57,9 +57,7 @@ module.exports = (robot) ->
     # If colNum = -1, tell user the column wasn't found and must be titled
     # 'Name' (no quotes).
     if colNum == -1
-      msg.send "Sorry, I couldn't find the 'name' column. A reminder: 
-                the column containing client names *must* be titled
-                'Name' (no quotes) in order for me to read it."
+      msg.send "Sorry, I couldn't find the 'name' column. A reminder: the column containing client names *must* be titled 'Name' (no quotes) in order for me to read it."
       return
     # Get value of cell given a rowId and columnId.
     getName = (rowNum, colNum) ->
