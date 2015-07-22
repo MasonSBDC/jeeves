@@ -25,7 +25,7 @@
 #   For more info, check the README.
 
 module.exports = (robot) ->
-  robot.hear /jeeves/i, (msg) ->
+  robot.hear /yo|hey/i, (msg) ->
     msg.send "WHAT"
   robot.hear /YOU'RE ALIVE/i, (msg) ->
     msg.send "WOOOOO YA DID IT BOY"
