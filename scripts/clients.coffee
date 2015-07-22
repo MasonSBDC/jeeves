@@ -68,10 +68,10 @@ module.exports = (robot) ->
           # in the last position of the array 'clientNames', it adds it to
           # 'message'.
           if res.statusCode isnt 200
-          msg.send "An error occurred when processing your request:
-                    #{res.statusCode}. The list of error codes can be found at
-                    http://bit.ly/ss-errors. Talk to the nearest code nerd for
-                    assistance."
+            msg.send "An error occurred when processing your request:
+                      #{res.statusCode}. The list of error codes can be found at
+                      http://bit.ly/ss-errors. Talk to the nearest code nerd for
+                      assistance."
           else
             return data.value
     # Populate clientNames with the names of our clients (once for each client)
