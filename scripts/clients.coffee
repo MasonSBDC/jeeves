@@ -40,7 +40,7 @@ module.exports = (robot) ->
                     http://bit.ly/ss-errors. Talk to the nearest code nerd for
                     assistance."
         else
-          msg.send data.rows[0].id
+          msg.send "I'm not a lazy buttface, I swear."
     #       # Populate 'rows' with all rowId's from default sheet.
     #       rowNums = (row.id for row in data.rows)
     #       # Parses 'columns' for column titled 'Name'. Stops when it finds it.
