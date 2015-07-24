@@ -40,18 +40,18 @@ module.exports = (robot) ->
                     http://bit.ly/ss-errors. Talk to the nearest code nerd for
                     assistance."
         else
-          # Populate 'rows' with all rowId's from default sheet.
-          rowNums = (row.id for row in data.rows)
-          # Parses 'columns' for column titled 'Name'. Stops when it finds it.
-          for column in data.columns
-            if column.title.toLowerCase() == "name"
-              colNum = column.id
-              break
-            else
-              return undefined
-    msg.send rowNums
-    # If colNum = -1, tell user the column wasn't found and must be titled
-    # 'Name' (no quotes).
+          msg.send data.rows[0].id
+    #       # Populate 'rows' with all rowId's from default sheet.
+    #       rowNums = (row.id for row in data.rows)
+    #       # Parses 'columns' for column titled 'Name'. Stops when it finds it.
+    #       for column in data.columns
+    #         if column.title.toLowerCase() == "name"
+    #           colNum = column.id
+    #           break
+    #         else
+    #           return undefined
+    # # If colNum = -1, tell user the column wasn't found and must be titled
+    # # 'Name' (no quotes).
     # if colNum == -1
     #   msg.send "Sorry, I couldn't find the 'name' column. A reminder: the column containing client names *must* be titled 'Name' (no quotes) in order for me to read it."
     #   return
