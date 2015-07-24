@@ -40,41 +40,40 @@ module.exports = (robot) ->
                     http://bit.ly/ss-errors. Talk to the nearest code nerd for
                     assistance."
         else
-          msg.send "I'm not a lazy buttface, I swear."
-    #       # Populate 'rows' with all rowId's from default sheet.
-    #       rowNums = (row.id for row in data.rows)
-    #       # Parses 'columns' for column titled 'Name'. Stops when it finds it.
-    #       for column in data.columns
-    #         if column.title.toLowerCase() == "name"
-    #           colNum = column.id
-    #           break
-    #         else
-    #           return undefined
-    # # If colNum = -1, tell user the column wasn't found and must be titled
-    # # 'Name' (no quotes).
-    # if colNum == -1
-    #   msg.send "Sorry, I couldn't find the 'name' column. A reminder: the column containing client names *must* be titled 'Name' (no quotes) in order for me to read it."
-    #   return
-    # # Get value of cell given a rowId and columnId.
-    # getName = (rowNum, colNum) ->
-    #   robot.http(url + "/rows/" + rowNum + "/columns/" + colNum)
-    #     .headers(Authorization: auth, Accept: 'application/json')
-    #     .get() (err, res, body) ->
-    #       data = JSON.parse(body)
-    #       # Parses array of all cells in column. If the name in the cell isn't
-    #       # in the last position of the array 'clientNames', it adds it to
-    #       # 'message'.
-    #       if res.statusCode isnt 200
-    #         msg.send "An error occurred when processing your request:
-    #                   #{res.statusCode}. The list of error codes can be found at
-    #                   http://bit.ly/ss-errors. Talk to the nearest code nerd for
-    #                   assistance."
-    #       else
-    #         return data.value
-    # # Populate clientNames with the names of our clients (once for each client)
-    # # using getName.
-    # for row, i in rowNums
-    #   if clientNames[i] == getName(row, colNum)
-    #     clientNames.push getName(row, colNum) + "\n"
-    # # clientNames = (getName(rowId, colNum) + "\n" for rowId in rows)
-    # msg.send clientNames
+          # Populate 'rows' with all rowId's from default sheet.
+          rowNums = (row.id for row in data.rows)
+          # Parses 'columns' for column titled 'Name'. Stops when it finds it.
+          for column in data.columns
+            if column.title.toLowerCase() == "name"
+              colNum = column.id
+              break
+            else
+              return undefined
+    # If colNum = -1, tell user the column wasn't found and must be titled
+    # 'Name' (no quotes).
+    if colNum == -1
+      msg.send "Sorry, I couldn't find the 'name' column. A reminder: the column containing client names *must* be titled 'Name' (no quotes) in order for me to read it."
+      return
+    # Get value of cell given a rowId and columnId.
+    getName = (rowNum, colNum) ->
+      robot.http(url + "/rows/" + rowNum + "/columns/" + colNum)
+        .headers(Authorization: auth, Accept: 'application/json')
+        .get() (err, res, body) ->
+          data = JSON.parse(body)
+          # Parses array of all cells in column. If the name in the cell isn't
+          # in the last position of the array 'clientNames', it adds it to
+          # 'message'.
+          if res.statusCode isnt 200
+            msg.send "An error occurred when processing your request:
+                      #{res.statusCode}. The list of error codes can be found at
+                      http://bit.ly/ss-errors. Talk to the nearest code nerd for
+                      assistance."
+          else
+            return data.value
+    # Populate clientNames with the names of our clients (once for each client)
+    # using getName.
+    for row, i in rowNums
+      if clientNames[i] == getName(row, colNum)
+        clientNames.push getName(row, colNum) + "\n"
+    # clientNames = (getName(rowId, colNum) + "\n" for rowId in rows)
+    msg.send clientNames
