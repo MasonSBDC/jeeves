@@ -9,8 +9,7 @@
 #   HUBOT_SMARTSHEET_DEFAULT_SHEET_ID
 #
 # Commands:
-#   ss clients <sheet ID> - Lists names of all clients from the specified sheet.
-#     To list the entire client database, don't type a sheet ID.
+#   ss clients <sheet ID> - Lists names of all clients from the specified sheet. To list the entire client database, don't type a sheet ID.
 #
 # Notes:
 #	  A column in the specified sheet *must* have the title 'Client Name', or this won't
@@ -56,8 +55,9 @@ module.exports = (robot) ->
               return undefined
     # If colNum = -1, tell user the column wasn't found and must be titled
     # 'Name' (no quotes).
+    msg.send "The current default sheet is #{data.name}."
     if colNum == -1
-      msg.send "Sorry, I couldn't find the 'name' column. A reminder: the column containing client names *must* be titled 'Name' (no quotes) in order for me to read it."
+      msg.send "Sorry, I couldn't find the 'client name' column. A reminder: the column containing client names *must* be titled 'Client Name' (no quotes) in order for me to read it."
       return
     # Get value of cell given a rowId and columnId.
     getName = (rowNum, colNum) ->
