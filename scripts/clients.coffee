@@ -38,6 +38,7 @@ module.exports = (robot) ->
       .headers(Authorization: auth, Accept: 'application/json')
       .get() (err, res, body) ->
         data = JSON.parse(body)
+        msg.send "The current default sheet is #{data.name}."
         if res.statusCode isnt 200
           msg.send "An error occurred when processing your request:
                     #{res.statusCode}. The list of error codes can be found at
@@ -55,7 +56,6 @@ module.exports = (robot) ->
               return undefined
     # If colNum = -1, tell user the column wasn't found and must be titled
     # 'Name' (no quotes).
-    msg.send "The current default sheet is #{data.name}."
     if colNum == -1
       msg.send "Sorry, I couldn't find the 'client name' column. A reminder: the column containing client names *must* be titled 'Client Name' (no quotes) in order for me to read it."
       return
