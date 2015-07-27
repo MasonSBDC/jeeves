@@ -11,9 +11,6 @@
 # Commands:
 #   ss default - Tells the user the name of the current default sheet.
 #
-# Status:
-#   ss default - functional
-#
 # Notes:
 #   When interacting with Smartsheet, there will be a default sheet that jeeves
 #   will search if no additional sheet is specified. This default sheet should
@@ -22,18 +19,20 @@
 #   Maybe add a command that tells the user the ID numbers of the most
 #   frequently-searched documents. Like, top three.
 #
+#   ss default - functional
+#
 #   For more info, check the README.
 
 module.exports = (robot) ->
   robot.hear /hey/i, (msg) ->
     msg.send "WHAT"
-  
+
   robot.hear /YOU'RE ALIVE/i, (msg) ->
     msg.send "WOOOOO YA DID IT BOY"
 
   robot.hear /thanks|thank you/i, (msg) ->
     msg.send "Sure, whatever."
-  
+
   robot.hear /ss default/i, (msg) ->
     url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SMARTSHEET_DEFAULT_SHEET_ID}"
     auth = "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}"

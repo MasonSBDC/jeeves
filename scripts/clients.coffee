@@ -9,25 +9,30 @@
 #   HUBOT_SMARTSHEET_DEFAULT_SHEET_ID
 #
 # Commands:
-#   ss clients - Lists names of all Mason SBDC clients.
-#
-# Status:
-#   ss clients - not functional
+#   ss clients <sheet ID> - Lists names of all clients from the specified sheet.
+#     To list the entire client database, don't type a sheet ID.
 #
 # Notes:
-#	A column in the specified sheet *must* have the title 'Name', or this won't
-#	work.
+#	  A column in the specified sheet *must* have the title 'Client Name', or this won't
+#	  work.
 #
-#	Currently, this only searches the default document. In the future, maybe it
-#	could search a user-specified document.
+#   ss clients - not functional
+#
+#	  Currently, this only searches the default document. In the future, maybe it
+#	  could search a user-specified document.
 
 module.exports = (robot) ->
-  robot.hear /ss clients/i, (msg) ->
-    url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SMARTSHEET_DEFAULT_SHEET_ID}"
+  robot.hear /ss clients (.*)/i, (msg) ->
+    sheetID = msg.match[1]
+    url = ""
     auth = "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}"
     colNum = -1
     rowNums = []
     clientNames = []
+    if sheetID is ""
+      url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SMARTSHEET_DEFAULT_SHEET_ID}"
+    else
+      url = "https://api.smartsheet.com/2.0/sheets/#{sheetID}"
     # Populate 'rows' with all row values from the default sheet and set
     # columnId to colNum.
     robot.http(url)
@@ -44,7 +49,7 @@ module.exports = (robot) ->
           rowNums = (row.id for row in data.rows)
           # Parses 'columns' for column titled 'Name'. Stops when it finds it.
           for column in data.columns
-            if column.title.toLowerCase() == "name"
+            if column.title.toLowerCase() == "client name"
               colNum = column.id
               break
             else

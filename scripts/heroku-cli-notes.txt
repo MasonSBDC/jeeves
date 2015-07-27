@@ -1,0 +1,2 @@
+To set an environment variable:
+  heroku config:set HUBOT_VARIABLE_NAME=VALUE
