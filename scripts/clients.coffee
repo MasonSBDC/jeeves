@@ -28,6 +28,7 @@ module.exports = (robot) ->
     colNum = -1
     rowNums = []
     clientNames = []
+    testNum = 0
     if sheetID is "default"
       url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SMARTSHEET_DEFAULT_SHEET_ID}"
     else
@@ -46,6 +47,9 @@ module.exports = (robot) ->
                     http://bit.ly/ss-errors. Talk to the nearest code nerd for
                     assistance."
         else
+          # Debug. See if it's even getting to this point and if code in here
+          # works outside of this method.
+          testNum = 1
           # Populate 'rows' with all rowId's from default sheet.
           rowNums = [1,2,3,4,5] #(row.id for row in data.rows)
           # Parses 'columns' for column titled 'Name'. Stops when it finds it.
@@ -59,7 +63,7 @@ module.exports = (robot) ->
     # 'Name' (no quotes).
     if colNum == -1
       # msg.send "Sorry, I couldn't find the 'client name' column. A reminder: the column containing client names *must* be titled 'Client Name' (no quotes) in order for me to read it."
-      msg.send "colNum: " + colNum + " | rowNums: " + rowNums
+      msg.send "colNum: " + colNum + " | rowNums: " + rowNums + " | testNum: " + testNum
       return
     # Get value of cell given a rowId and columnId.
     getName = (rowNum, colNum) ->
