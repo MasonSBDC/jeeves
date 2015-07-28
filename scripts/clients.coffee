@@ -9,7 +9,7 @@
 #   HUBOT_SMARTSHEET_DEFAULT_SHEET_ID
 #
 # Commands:
-#   ss clients <sheet ID> - Lists names of all clients from the specified sheet. To list the entire client database, don't type a sheet ID.
+#   ss clients <sheet ID> - Lists names of all clients from the specified sheet. To list the entire client database, type 'default' instead of a sheet ID.
 #
 # Notes:
 #	  A column in the specified sheet *must* have the title 'Client Name', or this won't
@@ -28,7 +28,7 @@ module.exports = (robot) ->
     colNum = -1
     rowNums = []
     clientNames = []
-    if sheetID is ""
+    if sheetID is "default"
       url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SMARTSHEET_DEFAULT_SHEET_ID}"
     else
       url = "https://api.smartsheet.com/2.0/sheets/#{sheetID}"
