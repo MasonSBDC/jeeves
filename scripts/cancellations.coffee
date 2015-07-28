@@ -9,5 +9,4 @@
 #
 # Commands:
 #   clients - Lists names of all Mason SBDC clients.
-#   clients <employeeName> - Lists names of clients assigned to an
-#                                 employee.
+#   clients <employeeName> - Lists names of clients assigned to an employee.
