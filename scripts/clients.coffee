@@ -41,17 +41,15 @@ module.exports = (robot) ->
       .headers(Authorization: auth, Accept: 'application/json')
       .get() (err, res, body) ->
         data = JSON.parse(body)
+        testNum = 1
         if res.statusCode isnt 200
           msg.send "An error occurred when processing your request:
                     #{res.statusCode}. The list of error codes can be found at
                     http://bit.ly/ss-errors. Talk to the nearest code nerd for
                     assistance."
         else
-          # Debug. See if it's even getting to this point and if code in here
-          # works outside of this method.
-          testNum = 1
           # Populate 'rows' with all rowId's from default sheet.
-          rowNums = [1,2,3,4,5] #(row.id for row in data.rows)
+          rowNums = [1, 2, 3, 4, 5] #(row.id for row in data.rows)
           # Parses 'columns' for column titled 'Name'. Stops when it finds it.
           for column in data.columns
             if column.title.toLowerCase() == "client name"
