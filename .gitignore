@@ -1,5 +1,6 @@
 .DS_Store*
 .hubot_history
 /scripts/advanced-http.coffee
-/scripts/javascript/
 /scripts/js-check/
+/scripts/example.coffee
+/scripts/my-first-script.coffee
