@@ -32,13 +32,14 @@ module.exports = (robot) ->
       url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SMARTSHEET_DEFAULT_SHEET_ID}"
     else
       url = "https://api.smartsheet.com/2.0/sheets/#{sheetID}"
+    # Works up to here.
+
     # Populate 'rows' with all row values from the default sheet and set
     # columnId to colNum.
     robot.http(url)
       .headers(Authorization: auth, Accept: 'application/json')
       .get() (err, res, body) ->
         data = JSON.parse(body)
-        msg.send "The current default sheet is #{data.name}."
         if res.statusCode isnt 200
           msg.send "An error occurred when processing your request:
                     #{res.statusCode}. The list of error codes can be found at
@@ -57,7 +58,8 @@ module.exports = (robot) ->
     # If colNum = -1, tell user the column wasn't found and must be titled
     # 'Name' (no quotes).
     if colNum == -1
-      msg.send "Sorry, I couldn't find the 'client name' column. A reminder: the column containing client names *must* be titled 'Client Name' (no quotes) in order for me to read it."
+      # msg.send "Sorry, I couldn't find the 'client name' column. A reminder: the column containing client names *must* be titled 'Client Name' (no quotes) in order for me to read it."
+      msg.send "colNum: " + colNum + " | rowNums: " + rowNums
       return
     # Get value of cell given a rowId and columnId.
     getName = (rowNum, colNum) ->
