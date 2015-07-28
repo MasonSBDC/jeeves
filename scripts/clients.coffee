@@ -47,7 +47,7 @@ module.exports = (robot) ->
                     assistance."
         else
           # Populate 'rows' with all rowId's from default sheet.
-          rowNums = (row.id for row in data.rows)
+          rowNums = [1,2,3,4,5] #(row.id for row in data.rows)
           # Parses 'columns' for column titled 'Name'. Stops when it finds it.
           for column in data.columns
             if column.title.toLowerCase() == "client name"
