@@ -56,7 +56,6 @@ module.exports = (robot) ->
               colNum = column.id
               break
             else
-              msg.send "hear, hear!"
               return undefined
         msg.send "testNum: " testNum #"colNum: " + colNum + " | rowNums: " + rowNums + " | testNum: " + testNum
     # If colNum = -1, tell user the column wasn't found and must be titled
