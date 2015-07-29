@@ -25,6 +25,9 @@ module.exports = (robot) ->
     url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SS_CLIENT_SCHEDULE_ID}"
     auth = "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}"
     dateCol = -1
+    empNameCol = -1
+    cliNameCol = -1
+    timeCol = -1
     rowNums = []
     rowYrBoatNerd = ""
 
@@ -45,12 +48,21 @@ module.exports = (robot) ->
       .headers(Authorization: auth, Accept: 'application/json')
       .get() (err, res, body) ->
         data = JSON.parse(body)
-        # Find the column the date is stored in.
+        # Find the columns where the date, employee name, client name, and time are stored.
         # NOTE: To run regular JS code, put it in tickmarks (`).
         `for (var i = 0; i < data.columns.length; i++) {
-          if (data.columns[i].title.toLowerCase() === "date") {
+          columnTitle = data.columns[i].title.toLowerCase();
+          if (columnTitle === "date") {
             dateCol = i;
-            break;
+          }
+          if (columnTitle === "client name") {
+            cliNameCol = i;
+          }
+          if (columnTitle === "employee name") {
+            empNameCol = i;
+          }
+          if (columnTitle === "time") {
+            timeCol = i;
           }
         }`
         # Compile list of row numbers w/ appointments scheduled for today.
@@ -60,6 +72,7 @@ module.exports = (robot) ->
         # Test if we got the rows we wanted.
         for rowNum, i in rowNums
           apptNum = i + 1
-          rowYrBoatNerd += apptNum + ". #{data.rows[rowNum].cells[3]}: #{data.rows[rowNum].cells[1]} at #{data.rows[rowNum].cells[6]}.\n"
+          # Should print in the form "X. [employee name]: [client name] at [time].".
+          rowYrBoatNerd += apptNum + ". #{data.rows[rowNum].cells[empNameCol].value}: #{data.rows[rowNum].cells[cliNameCol].value} at #{data.rows[rowNum].cells[timeCol].value}.\n"
         msg.send "Okay, we've got #{rowNums.length} appointments today:\n" + rowYrBoatNerd
 
