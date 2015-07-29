@@ -25,7 +25,8 @@ module.exports = (robot) ->
     url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SS_CLIENT_SCHEDULE_ID}"
     auth = "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}"
     dateCol = -1
-    clientNames = []
+    rowNums = []
+    rowYrBoatNerd = ""
 
     # Create date in YYYY-MM-DD format.
     date = new Date()
@@ -45,11 +46,19 @@ module.exports = (robot) ->
       .get() (err, res, body) ->
         data = JSON.parse(body)
         # Find the column the date is stored in.
+        # NOTE: To run regular JS code, put it in tickmarks (`).
         `for (var i = 0; i < data.columns.length; i++) {
           if (data.columns[i].title.toLowerCase() === "date") {
             dateCol = i;
             break;
           }
         }`
-        msg.send dateCol + " | " + today
+        # Compile list of row numbers w/ appointments scheduled for today.
+        for row in data.rows
+          if row.cells[dateCol].value == today
+            rowNums.push row.rowNumber
+        # Test if we got the rows we wanted.
+        for rowNum in rowNums
+          rowYrBoatNerd += row + "\n"
+        msg.send rowYrBoatNerd
 
