@@ -74,5 +74,6 @@ module.exports = (robot) ->
           apptNum = i + 1
           # Should print in the form "X. [employee name]: [client name] at [time].".
           rowYrBoatNerd += apptNum + ". #{data.rows[rowNum].cells[empNameCol].value}: #{data.rows[rowNum].cells[cliNameCol].value} at #{data.rows[rowNum].cells[timeCol].value}.\n"
-        msg.send "Okay, we've got #{rowNums.length} appointments today:\n" + rowYrBoatNerd
+        msg.send dateCol + " | " + empNameCol + " | " cliNameCol + " | " + timeCol
+        # "Okay, we've got #{rowNums.length} appointments today:\n" + rowYrBoatNerd
 
