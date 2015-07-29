@@ -56,9 +56,10 @@ module.exports = (robot) ->
         # Compile list of row numbers w/ appointments scheduled for today.
         for row in data.rows
           if row.cells[dateCol].value == today
-            rowNums.push row.rowNumber
+            rowNums.push row.rowNumber - 1
         # Test if we got the rows we wanted.
-        for rowNum in rowNums
-          rowYrBoatNerd += rowNum + "\n"
-        msg.send rowYrBoatNerd
+        for rowNum, i in rowNums
+          apptNum = i + 1
+          rowYrBoatNerd += apptNum + ". #{data.rows[rowNum].cells[3]}: #{data.rows[rowNum].cells[1]} at #{data.rows[rowNum].cells[6]}.\n"
+        msg.send "Okay, we've got #{rowNums.length} appointments today:\n" + rowYrBoatNerd
 
