@@ -60,6 +60,6 @@ module.exports = (robot) ->
         # Test if we got the rows we wanted.
         for rowNum, i in rowNums
           apptNum = i + 1
-          rowYrBoatNerd += apptNum + ". #{data.rows[rowNum].cells[3].value}: #{data.rows[rowNum].cells[1].value} at #{data.rows[rowNum].cells[6].value}.\n"
+          rowYrBoatNerd += apptNum + ". #{data.rows[rowNum].cells[3].value}: #{data.rows[rowNum].cells[1].value} at #{data.rows[rowNum].cells[9].value}.\n"
         msg.send "Okay, we've got #{rowNums.length} appointments today:\n" + rowYrBoatNerd
 
