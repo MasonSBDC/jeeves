@@ -25,9 +25,6 @@ module.exports = (robot) ->
     url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SS_CLIENT_SCHEDULE_ID}"
     auth = "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}"
     dateCol = -1
-    empNameCol = -1
-    cliNameCol = -1
-    timeCol = -1
     rowNums = []
     rowYrBoatNerd = ""
 
@@ -48,21 +45,12 @@ module.exports = (robot) ->
       .headers(Authorization: auth, Accept: 'application/json')
       .get() (err, res, body) ->
         data = JSON.parse(body)
-        # Find the columns where the date, employee name, client name, and time are stored.
+        # Find the column the date is stored in.
         # NOTE: To run regular JS code, put it in tickmarks (`).
         `for (var i = 0; i < data.columns.length; i++) {
-          columnTitle = data.columns[i].title.toLowerCase();
-          if (columnTitle === "date") {
+          if (data.columns[i].title.toLowerCase() === "date") {
             dateCol = i;
-          }
-          if (columnTitle === "client name") {
-            cliNameCol = i;
-          }
-          if (columnTitle === "employee name") {
-            empNameCol = i;
-          }
-          if (columnTitle === "time") {
-            timeCol = i;
+            break;
           }
         }`
         # Compile list of row numbers w/ appointments scheduled for today.
@@ -72,8 +60,6 @@ module.exports = (robot) ->
         # Test if we got the rows we wanted.
         for rowNum, i in rowNums
           apptNum = i + 1
-          # Should print in the form "X. [employee name]: [client name] at [time].".
-          rowYrBoatNerd += apptNum + ". #{data.rows[rowNum].cells[empNameCol].value}: #{data.rows[rowNum].cells[cliNameCol].value} at #{data.rows[rowNum].cells[timeCol].value}.\n"
-        # "Okay, we've got #{rowNums.length} appointments today:\n" + rowYrBoatNerd
-        msg.send dateCol + " | " + empNameCol + " | " cliNameCol + " | " + timeCol
+          rowYrBoatNerd += apptNum + ". #{data.rows[rowNum].cells[3].value}: #{data.rows[rowNum].cells[1].value} at #{data.rows[rowNum].cells[6].value}.\n"
+        msg.send "Okay, we've got #{rowNums.length} appointments today:\n" + rowYrBoatNerd
 
