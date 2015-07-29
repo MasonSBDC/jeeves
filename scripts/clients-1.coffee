@@ -59,6 +59,6 @@ module.exports = (robot) ->
             rowNums.push row.rowNumber
         # Test if we got the rows we wanted.
         for rowNum in rowNums
-          rowYrBoatNerd += row + "\n"
+          rowYrBoatNerd += rowNum + "\n"
         msg.send rowYrBoatNerd
 
