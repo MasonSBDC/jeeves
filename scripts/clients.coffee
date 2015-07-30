@@ -6,10 +6,11 @@
 #
 # Configuration:
 #   HUBOT_SMARTSHEET_API_KEY
-#   HUBOT_SMARTSHEET_DEFAULT_SHEET_ID
+#   HUBOT_SS_CLIENT_SCHEDULE_ID
 #
 # Commands:
 #   today's clients - Lists client names, counselor names, and times for appointments scheduled for today.
+#   client schedule - Same as "today's clients".
 #
 # Notes:
 #   A column in the specified sheet *must* have the title 'Client Name', or this won't
@@ -21,7 +22,7 @@
 #   In a future update, allow the user to specify a date (i.e., "clients for (.*)").
 
 module.exports = (robot) ->
-  robot.hear /today's clients/i, (msg) ->
+  robot.hear /today's clients|client schedule/i, (msg) ->
     url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SS_CLIENT_SCHEDULE_ID}"
     auth = "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}"
     dateCol = -1
