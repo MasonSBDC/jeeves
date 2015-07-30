@@ -14,11 +14,6 @@
 # Notes:
 #   A column in the specified sheet *must* have the title 'Client Name', or this won't
 #   work.
-#
-#   ss clients - not functional
-#
-#   Currently, this only searches the default document. In the future, maybe it
-#   could search a user-specified document.
 
 module.exports = (robot) ->
   robot.hear /today's clients/i, (msg) ->
