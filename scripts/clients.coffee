@@ -9,11 +9,16 @@
 #   HUBOT_SMARTSHEET_DEFAULT_SHEET_ID
 #
 # Commands:
-#   today's clients - Lists client names, counselor names, and times for appointments scheduled for today
+#   today's clients - Lists client names, counselor names, and times for appointments scheduled for today.
 #
 # Notes:
 #   A column in the specified sheet *must* have the title 'Client Name', or this won't
 #   work.
+#
+#   Time/date isn't in EST. Use moment and moment-timezone to make it so that the
+#   method updates at midnight EST.
+#
+#   In a future update, allow the user to specify a date (i.e., "clients for (.*)").
 
 module.exports = (robot) ->
   robot.hear /today's clients/i, (msg) ->
@@ -52,8 +57,28 @@ module.exports = (robot) ->
         for row in data.rows
           if row.cells[dateCol].value == today
             rowNums.push row.rowNumber - 1
-        # Test if we got the rows we wanted.
+        # Let's have Jeeves be motivational like Slack. It'd be nice.
+        randZeroToThree = Math.floor(Math.random() * (0 - 3 + 1)) + 0;
+        motivation = "\n\n"
+        if randZeroToThree == 0
+          motivation += "Go get 'em!"
+        else if randZeroToThree == 1
+          motivation += "Don't overwhelm yourself, now!"
+        else if randZeroToThree == 2
+          motivation += "You can do it!"
+        else
+          motivation += "Have a super day!"
+        # In a later update, make this future-proof -- have jeeves search the
+        # sheet for the columns containing the necessary data like he did the date.
+        employeeName = data.rows[rowNum].cells[3].value
+        clientName = data.rows[rowNum].cells[1].value
+        apptTime = data.rows[rowNum].cells[9].value
+        initialOrRepeat = data.rows[rowNum].cells[12].value.toLowerCase()
+        if initialOrRepeat == "initial"
+          initialOrRepeat = "an " + initialOrRepeat
+        else
+          initialOrRepeat = "a " + initialOrRepeat
         for rowNum, i in rowNums
           apptNum = i + 1
-          rowYrBoatNerd += apptNum + ". #{data.rows[rowNum].cells[3].value}: #{data.rows[rowNum].cells[1].value} at #{data.rows[rowNum].cells[9].value}.\n"
-        msg.send "Okay, we've got #{rowNums.length} appointments today:\n" + rowYrBoatNerd
+          rowYrBoatNerd += apptNum + ". #{employeeName}: #{clientName}, #{initialOrRepeat} customer, at #{apptTime}.\n"
+        msg.send "Okay, we've got #{rowNums.length} appointments today:\n" + rowYrBoatNerd + motivation
