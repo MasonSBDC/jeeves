@@ -22,7 +22,7 @@
 #   In a future update, allow the user to specify a date (i.e., "clients for (.*)").
 
 module.exports = (robot) ->
-  robot.hear /today's clients|client schedule/i, (msg) ->
+  robot.hear /client schedule/i, (msg) ->
     url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SS_CLIENT_SCHEDULE_ID}"
     auth = "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}"
     dateCol = -1
@@ -54,10 +54,12 @@ module.exports = (robot) ->
             break;
           }
         }`
+        
         # Compile list of row numbers w/ appointments scheduled for today.
         for row in data.rows
           if row.cells[dateCol].value == today
             rowNums.push row.rowNumber - 1
+        
         # Let's have Jeeves be motivational like Slack. It'd be nice.
         # Info about random number formula can be found here: http://bit.ly/JS-rand-nums.
         `function randZeroToThree(min, max) {

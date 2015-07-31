@@ -14,6 +14,9 @@
 # Notes:
 #   A column in the specified sheet *must* have the title 'Client Name', or this won't
 #   work.
+#
+#	Should print a message to the user in the form of "We have X clients waiting
+#	to be scheduled:\nEMPLOYEE_NAME: Schedule"
 
 module.exports = (robot) ->
   robot.hear /client following/i, (msg) ->
