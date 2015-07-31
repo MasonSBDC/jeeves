@@ -9,7 +9,7 @@
 #   HUBOT_SS_CLIENT_FOLLOWING_ID
 #
 # Commands:
-#   client following - Lists client names, follow-up dates, follow-up employee, and follow-up reason.
+#   client following - Lists client names, follow-up dates, follow-up employee, and follow-up reason. Doesn't work.
 #
 # Notes:
 #   A column in the specified sheet *must* have the title 'Client Name', or this won't
@@ -22,3 +22,4 @@ module.exports = (robot) ->
   robot.hear /client following/i, (msg) ->
     url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SS_CLIENT_FOLLOWING_ID}"
     auth = "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}"
+    msg.send "Placeholder text."

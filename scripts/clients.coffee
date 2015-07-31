@@ -9,8 +9,7 @@
 #   HUBOT_SS_CLIENT_SCHEDULE_ID
 #
 # Commands:
-#   today's clients - Lists client names, counselor names, and times for appointments scheduled for today.
-#   client schedule - Same as "today's clients".
+#   client schedule - Lists client names, counselor names, and times for appointments scheduled for today.
 #
 # Notes:
 #   A column in the specified sheet *must* have the title 'Client Name', or this won't
@@ -20,6 +19,8 @@
 #   method updates at midnight EST.
 #
 #   In a future update, allow the user to specify a date (i.e., "clients for (.*)").
+#
+#   OKAY THIS DOESN'T WORK NOW AND I HAVE NO IDEA WHY GAAAHHHH SOMEONE HELP
 
 module.exports = (robot) ->
   robot.hear /client schedule/i, (msg) ->
@@ -89,6 +90,6 @@ module.exports = (robot) ->
           else
             initialOrRepeat = "a " + initialOrRepeat
 
-          rowYrBoatNerd += apptNum + ". #{employeeName}: #{clientName}, #{initialOrRepeat} customer, at #{apptTime}.\n"
+          rowYrBoatNerd += apptNum + ". #{employeeName}: #{clientName}, #{initialOrRepeat} client, at #{apptTime}.\n"
         
         msg.send "Okay, we've got #{rowNums.length} appointments today:\n" + rowYrBoatNerd + motivation
