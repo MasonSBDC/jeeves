@@ -6,10 +6,10 @@
 #
 # Configuration:
 #   HUBOT_SMARTSHEET_API_KEY
-#   HUBOT_SS_CLIENT_SCHEDULE_ID
+#   HUBOT_SMARTSHEET_DEFAULT_SHEET_ID
 #
 # Commands:
-#   client schedule - Lists client names, counselor names, and times for appointments scheduled for today.
+#   today's clients - Lists client names, counselor names, and times for appointments scheduled for today.
 #
 # Notes:
 #   A column in the specified sheet *must* have the title 'Client Name', or this won't
@@ -19,11 +19,9 @@
 #   method updates at midnight EST.
 #
 #   In a future update, allow the user to specify a date (i.e., "clients for (.*)").
-#
-#   OKAY THIS DOESN'T WORK NOW AND I HAVE NO IDEA WHY GAAAHHHH SOMEONE HELP
 
 module.exports = (robot) ->
-  robot.hear /client schedule/i, (msg) ->
+  robot.hear /today's clients/i, (msg) ->
     url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SS_CLIENT_SCHEDULE_ID}"
     auth = "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}"
     dateCol = -1
@@ -55,12 +53,10 @@ module.exports = (robot) ->
             break;
           }
         }`
-        
         # Compile list of row numbers w/ appointments scheduled for today.
         for row in data.rows
           if row.cells[dateCol].value == today
             rowNums.push row.rowNumber - 1
-        
         # Let's have Jeeves be motivational like Slack. It'd be nice.
         # Info about random number formula can be found here: http://bit.ly/JS-rand-nums.
         `function randZeroToThree(min, max) {
@@ -90,6 +86,6 @@ module.exports = (robot) ->
           else
             initialOrRepeat = "a " + initialOrRepeat
 
-          rowYrBoatNerd += apptNum + ". #{employeeName}: #{clientName}, #{initialOrRepeat} client, at #{apptTime}.\n"
+          rowYrBoatNerd += apptNum + ". #{employeeName}: #{clientName}, #{initialOrRepeat} customer, at #{apptTime}.\n"
         
         msg.send "Okay, we've got #{rowNums.length} appointments today:\n" + rowYrBoatNerd + motivation
