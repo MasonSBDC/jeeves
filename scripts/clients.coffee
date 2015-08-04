@@ -72,4 +72,20 @@ module.exports = (robot) ->
         else
           motivation += "Have a super day!"
         
-        msg.send "Okay, we've got #{rowNums.length} appointments today:\n"
+        for rowNum, i in rowNums
+          apptNum = i + 1
+          # In a later update, make this future-proof -- have jeeves search the
+          # sheet for the columns containing the necessary data like he did the date.
+          employeeName = data.rows[rowNum].cells[3].value
+          clientName = data.rows[rowNum].cells[1].value
+          apptTime = data.rows[rowNum].cells[9].value
+          #initialOrRepeat = data.rows[rowNum].cells[12].value.toLowerCase()
+
+          #if initialOrRepeat == "initial"
+          #  initialOrRepeat = "an " + initialOrRepeat
+          #else
+          #  initialOrRepeat = "a " + initialOrRepeat
+          #", #{initialOrRepeat} customer," goes below.
+          rowYrBoatNerd += apptNum + ". #{employeeName}: #{clientName} at #{apptTime}.\n"
+        
+        msg.send "Okay, we've got #{rowNums.length} appointments today:\n" + rowYrBoatNerd + motivation
