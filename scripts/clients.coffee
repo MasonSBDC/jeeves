@@ -12,8 +12,11 @@
 #   today's clients - Lists client names, counselor names, and times for appointments scheduled for today.
 #
 # Notes:
-#   A column in the specified sheet *must* have the title 'Client Name', or this won't
-#   work.
+#   If the "Initial or Repeat Client" box is empty, the whole method won't
+#   print nothin'. I realized this after two days of debugging like an idiot.
+#   I'll fix it in the future, but for now, just keep this fact in mind.
+#   Also keep this in mind: Jay has the potential to be a dummy. Don't be afraid
+#   to call him out on it.
 #
 #   Time/date isn't in EST. Use moment and moment-timezone to make it so that the
 #   method updates at midnight EST.
