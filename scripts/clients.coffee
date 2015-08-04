@@ -57,21 +57,19 @@ module.exports = (robot) ->
         for row in data.rows
           if row.cells[dateCol].value == today
             rowNums.push row.rowNumber - 1
+        # Let's have Jeeves be motivational like Slack. It'd be nice.
+        # Info about random number formula can be found here: http://bit.ly/JS-rand-nums.
+        `function randZeroToThree(min, max) {
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+        }`
+        motivation = "\n"
+        if randZeroToThree(0, 3) == 0
+          motivation += "Go get 'em!"
+        else if randZeroToThree(0, 3) == 1
+          motivation += "Don't overwhelm yourself, now!"
+        else if randZeroToThree(0, 3) == 2
+          motivation += "You can do it!"
+        else
+          motivation += "Have a super day!"
         
-        for rowNum, i in rowNums
-          apptNum = i + 1
-          # In a later update, make this future-proof -- have jeeves search the
-          # sheet for the columns containing the necessary data like he did the date.
-          employeeName = data.rows[rowNum].cells[3].value
-          clientName = data.rows[rowNum].cells[1].value
-          apptTime = data.rows[rowNum].cells[9].value
-          initialOrRepeat = data.rows[rowNum].cells[12].value.toLowerCase()
-
-          if initialOrRepeat == "initial"
-            initialOrRepeat = "an " + initialOrRepeat
-          else
-            initialOrRepeat = "a " + initialOrRepeat
-
-          rowYrBoatNerd += apptNum + ". #{employeeName}: #{clientName}, #{initialOrRepeat} customer, at #{apptTime}.\n"
-        
-        msg.send "Okay, we've got #{rowNums.length} appointments today:\n" + rowYrBoatNerd
+        msg.send motivation
