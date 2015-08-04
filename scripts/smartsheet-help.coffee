@@ -1,6 +1,6 @@
 # Description:
 #   Tells the user general info about the Smartsheet data that jeeves is
-#   interacting with.
+#   interacting with. Also contains Jeeves' sense of humor.
 #
 # Dependencies: none.
 #
@@ -25,6 +25,7 @@
 
 module.exports = (robot) ->
   robot.hear /hey/i, (msg) ->
+    # Makin' him all sassy with the bossman.
     msg.send "WHAT"
 
   robot.hear /YOU'RE ALIVE/i, (msg) ->
@@ -32,6 +33,10 @@ module.exports = (robot) ->
 
   robot.hear /thanks|thank you/i, (msg) ->
     msg.send "Sure, whatever."
+
+  robot.hear /nerd/i, (msg) ->
+    # I am easily amused and use the word 'nerd' too often when debugging him.
+    msg.send "NO, YOU ARE."
 
   robot.hear /ss default/i, (msg) ->
     url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SMARTSHEET_DEFAULT_SHEET_ID}"
