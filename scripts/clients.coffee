@@ -6,7 +6,7 @@
 #
 # Configuration:
 #   HUBOT_SMARTSHEET_API_KEY
-#   HUBOT_SMARTSHEET_DEFAULT_SHEET_ID
+#   HUBOT_SMARTSHEET_CLIENT_SCHEDULE_ID
 #
 # Commands:
 #   today's clients - Lists client names, counselor names, and times for appointments scheduled for today.
@@ -15,7 +15,7 @@
 #   If the "Initial or Repeat Client" box is empty, the whole method won't
 #   print nothin'. I realized this after two days of debugging like an idiot.
 #   I'll fix it in the future, but for now, just keep this fact in mind.
-#   Also keep this in mind: Jay has the potential to be a dummy. Don't be afraid
+#   Also, keep this in mind: Jay has the potential to be a dummy. Don't be afraid
 #   to call him out on it.
 #
 #   Time/date isn't in EST. Use moment and moment-timezone to make it so that the
