@@ -9,16 +9,16 @@
 #   HUBOT_SMARTSHEET_CLIENT_FOLLOWING_ID
 #
 # Commands:
-#   clients we're following - Lists client names, counselor names, and times for appointments scheduled for today.
+#   following - Lists client names, counselor names, and times for appointments scheduled for today.
 #
 # Notes:
-#		Come up with a better command than "clients we're following".
+#		Come up with a better command than "following".
 #
 #		Messages user in form of "NUMBER. EMPLOYEE_NAME: follow up with CLIENT_NAME by
 #		FOLLOW_UP_DATE. Reason: REASON."
 
 module.exports = (robot) ->
-  robot.hear /clients we're following/i, (msg) ->
+  robot.hear /following/i, (msg) ->
     url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SS_CLIENT_FOLLOWING_ID}"
     auth = "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}"
     rowNums = []
