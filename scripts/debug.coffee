@@ -43,5 +43,5 @@ module.exports = (robot) ->
           #  }
           #}`
 
-          msg.send data.columns[0].title
+          msg.send data.columns.length
 
