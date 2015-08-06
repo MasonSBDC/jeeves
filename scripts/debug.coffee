@@ -9,7 +9,7 @@
 #   HUBOT_SMARTSHEET_CLIENT_FOLLOWING_ID
 #
 # Commands:
-#   debug - Lists client names, counselor names, and times for appointments scheduled for today.
+#   ss debug - A debug method. Not for mere mortals.
 #
 # Notes:
 #		
@@ -43,5 +43,5 @@ module.exports = (robot) ->
           #  }
           #}`
 
-          msg.send "This sheet is called #{data.name}. The date is #{month}/#{date}."
+          msg.send data.columns.length
 
