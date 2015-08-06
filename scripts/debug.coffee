@@ -15,7 +15,7 @@
 #		
 
 module.exports = (robot) ->
-  robot.hear /deboog/i, (msg) ->
+  robot.hear /ss debug/i, (msg) ->
     url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SS_CLIENT_FOLLOWING_ID}"
     auth = "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}"
     rowNums = []
