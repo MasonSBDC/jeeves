@@ -18,7 +18,7 @@ module.exports = (robot) ->
   robot.hear /ss debug/i, (msg) ->
     url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SS_CLIENT_FOLLOWING_ID}"
     auth = "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}"
-    rowNums = []
+    rowNums = [1, 2, 3, 4, 5]
     followUpDateCol = -1
     message = ""
 
@@ -46,21 +46,7 @@ module.exports = (robot) ->
           if followUpDateCol == -1
             msg.send "Sorry, I couldn't find the column titled 'Follow Up Plan Date'. Note: the column must have that exact title (no quotes) for me to read it."
 
-          #for row, i in data.rows
-          #  num = i + 1
+          for row in rowNums
+            message += "#{row} "
 
-          for row in data.rows
-            followUpMonth = Number(row.cells[followUpDateCol].value.slice(5,7))
-            followUpDate = Number(row.cells[followUpDateCol].value.slice(8))
-            if followUpMonth > month
-              message += row.rowNumber + "\n"
-            else if followUpMonth == month && followUpDate >= date
-              message += row.rowNumber + "\n"
-            else
-              continue
-
-          if message == ""
-            msg.send err
-          else
-            msg.send message
-
+          msg.send message
