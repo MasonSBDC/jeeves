@@ -53,9 +53,9 @@ module.exports = (robot) ->
             followUpMonth = Number(row.cells[followUpDateCol].value.slice(5,7))
             followUpDate = Number(row.cells[followUpDateCol].value.slice(8))
             if followUpMonth > month
-              rowNums.push row.rowNumber - 1
+              message += row.rowNumber + "\n"
             else if followUpMonth == month && followUpDate >= date
-              rowNums.push row.rowNumber - 1
+              message += row.rowNumber + "\n"
             else
               continue
 
