@@ -46,15 +46,22 @@ module.exports = (robot) ->
           if followUpDateCol == -1
             msg.send "Sorry, I couldn't find the column titled 'Follow Up Plan Date'. Note: the column must have that exact title (no quotes) for me to read it."
 
-          for row in data.rows when data.rows.length < 4
-            followUpMonth = Number(row.cells[followUpDateCol].value.slice(5,7))
-            followUpDate = Number(row.cells[followUpDateCol].value.slice(8))
-            message += "#{row.rowNumber}: #{followUpMonth}/#{followUpDate}\n"
+          #for row in data.rows when data.rows.length < 4
+          #  followUpMonth = Number(row.cells[followUpDateCol].value.slice(5,7))
+          #  followUpDate = Number(row.cells[followUpDateCol].value.slice(8))
+          #  message += "#{row.rowNumber}: #{followUpMonth}/#{followUpDate}\n"
+
+          `for (var i = 0; i < 4; i++) {
+            var row = data.rows[i];
+            var followUpMonth = Number(row.cells[followUpDateCol].value.slice(5,7));
+            var followUpDate = Number(row.cells[followUpDateCol].value.slice(8));
+            message += row.rowNumber + ". " + followUpMonth + "/" + followUpDate + ".\n";
+          }`
 
           #ref = data.rows
           #row = ref[0]
           #followUpMonth = Number(row.cells[followUpDateCol].value.slice(5,7))
           #followUpDate = Number(row.cells[followUpDateCol].value.slice(8))
-          #message = "#{row.rowNumber}: #{followUpMonth}/#{followUpDate}"
+          #message += "#{row.rowNumber}: #{followUpMonth}/#{followUpDate}"
 
           msg.send message
