@@ -50,10 +50,11 @@ module.exports = (robot) ->
           #  followUpMonth = Number(row.cells[followUpDateCol].value.slice(5,7))
           #  followUpDate = Number(row.cells[followUpDateCol].value.slice(8))
           #  message += "#{row.rowNumber}: #{followUpMonth}/#{followUpDate}\n"
-          i = data.rows.length - 10
-          lengthh = data.rows.length
-          `for (var j = i; j < lengthh; i++) {
-            var row = data.rows[j];
+
+          rows2 = data.rows.splice(data.rows.length - 10, data.rows.length)
+
+          `for (var i = 0; j < rows2.length; i++) {
+            var row = rows2[i];
             var followUpMonth = Number(row.cells[followUpDateCol].value.slice(5,7));
             var followUpDate = Number(row.cells[followUpDateCol].value.slice(8));
             message += row.rowNumber + ". " + followUpMonth + "/" + followUpDate + ".\n";
@@ -65,4 +66,4 @@ module.exports = (robot) ->
           #followUpDate = Number(row.cells[followUpDateCol].value.slice(8))
           #message += "#{row.rowNumber}: #{followUpMonth}/#{followUpDate}"
 
-          msg.send "#{message}\nThis for loop should be starting at #{data.rows.length - 10}.\nThis sheet has #{data.rows.length} rows."
+          msg.send "#{message}\nThis for loop should be starting at #{data.rows.length - 10}.\nThis sheet has #{data.rows.length} rows. rows2 contains #{rows2.length} rows."
