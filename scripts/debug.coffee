@@ -43,5 +43,5 @@ module.exports = (robot) ->
           #  }
           #}`
 
-          msg.send "This is a debug script."
+          msg.send data.columns.length
 
