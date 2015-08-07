@@ -43,5 +43,5 @@ module.exports = (robot) ->
           #  }
           #}`
 
-          msg.send data.columns.constructor
+          msg.send "This is a debug script."
 
