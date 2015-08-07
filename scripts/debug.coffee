@@ -36,12 +36,12 @@ module.exports = (robot) ->
         else
 				  # Find the column the follow-up date is stored in.
           # NOTE: To run regular JS code, put it in tickmarks (`).
-          #`for (var i = 0; i < data.columns.length; i++) {
-          #  if (data.columns[i].title.toLowerCase() === "follow up plan date") {
-          #    followUpDateCol = i;
-          #    break;
-          #  }
-          #}`
+          `for (var i = 0; i < data.columns.length; i++) {
+            if (data.columns[i].title.toLowerCase() === "follow up plan date") {
+              followUpDateCol = i;
+              break;
+            }
+          }`
 
           msg.send "There are #{data.columns.length} columns in this sheet."
 
