@@ -59,5 +59,8 @@ module.exports = (robot) ->
             else
               continue
 
-          msg.send "There are #{data.columns.length} columns in this sheet. Also, the follow-up date is stored in column #{followUpDateCol}."
+          if message == ""
+            msg.send err
+          else
+            msg.send message
 
