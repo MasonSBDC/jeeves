@@ -46,7 +46,7 @@ module.exports = (robot) ->
           if followUpDateCol == -1
             msg.send "Sorry, I couldn't find the column titled 'Follow Up Plan Date'. Note: the column must have that exact title (no quotes) for me to read it."
 
-          for row in rowNums
-            message += "#{row} "
+          for row in data.rows
+            message += "#{row.rowNumber} "
 
           msg.send message
