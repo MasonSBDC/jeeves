@@ -46,11 +46,8 @@ module.exports = (robot) ->
           if followUpDateCol == -1
             msg.send "Sorry, I couldn't find the column titled 'Follow Up Plan Date'. Note: the column must have that exact title (no quotes) for me to read it."
 
-          for row, i in data.rows
-            num = i + 1
-            followUpMonth = Number(row.cells[followUpDateCol].value.slice(5,7))
-            followUpDate = Number(row.cells[followUpDateCol].value.slice(8))
-            message += "#{num}: #{followUpMonth}/#{followUpDate}\n"
+          #for row, i in data.rows
+          #  num = i + 1
 
           msg.send "There are #{data.columns.length} columns in this sheet. Also, the follow-up date is stored in column #{followUpDateCol}."
 
