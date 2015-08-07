@@ -43,5 +43,5 @@ module.exports = (robot) ->
           #  }
           #}`
 
-          msg.send data.columns.length
+          msg.send "There are #{data.columns.length} in this sheet."
 
