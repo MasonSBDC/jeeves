@@ -49,5 +49,15 @@ module.exports = (robot) ->
           #for row, i in data.rows
           #  num = i + 1
 
+          for row in data.rows
+            followUpMonth = Number(row.cells[followUpDateCol].value.slice(5,7))
+            followUpDate = Number(row.cells[followUpDateCol].value.slice(8))
+            if followUpMonth > month
+              rowNums.push row.rowNumber - 1
+            else if followUpMonth == month && followUpDate >= date
+              rowNums.push row.rowNumber - 1
+            else
+              continue
+
           msg.send "There are #{data.columns.length} columns in this sheet. Also, the follow-up date is stored in column #{followUpDateCol}."
 
