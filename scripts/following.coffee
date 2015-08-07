@@ -45,6 +45,7 @@ module.exports = (robot) ->
         if followUpDateCol == -1
         	msg.send "Sorry, I couldn't find the column titled 'Follow Up Plan Date'. Note: the column must have that exact title (no quotes) for me to read it."
 
+        # **CODE WORKS UP TO HERE**
         # Find the rows containing dates that are either today or fall after today.
         for row in data.rows
         	# followUpMonth is the month from the 'follow up plan date' column. Similar with followUpDate.
