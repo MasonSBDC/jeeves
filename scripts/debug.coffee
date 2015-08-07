@@ -51,7 +51,7 @@ module.exports = (robot) ->
           #  followUpDate = Number(row.cells[followUpDateCol].value.slice(8))
           #  message += "#{row.rowNumber}: #{followUpMonth}/#{followUpDate}\n"
 
-          `for (var i = data.rows.length - 20; i < data.rows.length; i++) {
+          `for (var i = data.rows.length - 10; i < data.rows.length - 1; i++) {
             var row = data.rows[i];
             var followUpMonth = Number(row.cells[followUpDateCol].value.slice(5,7));
             var followUpDate = Number(row.cells[followUpDateCol].value.slice(8));
