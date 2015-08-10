@@ -41,7 +41,7 @@ module.exports = (robot) ->
         for row in data.rows
           rowNums.push row.id
         message += rowNums[0]
-    msg.send message
+        msg.send message
     # Delete the first row.
     #robot.http(url + "/rows/#{rowNums[0]}")
     #  .headers(Authorization: auth)
