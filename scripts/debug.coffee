@@ -64,6 +64,6 @@ module.exports = (robot) ->
           row = ref[0]
           followUpMonth = Number(row.cells[followUpDateCol].value.slice(5,7))
           followUpDate = Number(row.cells[followUpDateCol].value.slice(8))
-          message += "#{row.rowNumber}: #{followUpMonth}/#{followUpDate}"
+          message += "#{row.rowNumber}: #{followUpMonth}/#{followUpDate}\n"
 
-          msg.send "This for loop should be starting at #{data.rows.length - 10}.\nThis sheet has #{data.rows.length} rows. rows2 contains #{rows2.length} rows."
+          msg.send message + "This sheet has #{data.rows.length} rows."
