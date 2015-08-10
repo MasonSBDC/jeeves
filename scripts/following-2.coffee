@@ -9,7 +9,7 @@
 #   HUBOT_SS_CLIENT_FOLLOWING_ID
 #
 # Commands:
-#   following - Lists the clients we're following to-date.
+#   following2 - Lists the clients we're following to-date. Don't use.
 #
 # Notes:
 #		Come up with a better command than "following".
@@ -18,7 +18,7 @@
 #		FOLLOW_UP_DATE. Reason: REASON."
 
 module.exports = (robot) ->
-  robot.hear /following/i, (msg) ->
+  robot.hear /following2/i, (msg) ->
     url = "https://api.smartsheet.com/2.0/sheets/#{process.env.HUBOT_SS_CLIENT_FOLLOWING_ID}"
     auth = "Bearer #{process.env.HUBOT_SMARTSHEET_API_KEY}"
     rowNums = []
