@@ -36,13 +36,11 @@ module.exports = (robot) ->
     # Get rows IDs.
     robot.http(url)
       .headers(Authorization: auth, Accept: 'application/json')
-      `.get()(function(err, resp, body) {
-              data = JSON.parse(body)
-              for (i = 0, len = ref.length; i < len; i++) {
-                row = ref[i];
-                rowNums.push(row.id);
-              }
-              message += rowNums[0]}`
+      .get() (err, res, body) ->
+        data = JSON.parse(body)
+        for row in data.rows
+          rowNums.push row.id
+        message += rowNums[0]
     msg.send message
     # Delete the first row.
     #robot.http(url + "/rows/#{rowNums[0]}")
