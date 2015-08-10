@@ -6,7 +6,7 @@
 #
 # Configuration:
 #   HUBOT_SMARTSHEET_API_KEY
-#   HUBOT_SMARTSHEET_CLIENT_FOLLOWING_ID
+#   HUBOT_SS_CLIENT_FOLLOWING_ID
 #
 # Commands:
 #   following - Lists client names, counselor names, and times for appointments scheduled for today.
