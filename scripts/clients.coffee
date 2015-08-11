@@ -91,4 +91,4 @@ module.exports = (robot) ->
 
           rowYrBoatNerd += apptNum + ". #{employeeName}: #{clientName}, #{initialOrRepeat} customer, at #{apptTime}.\n"
         
-        msg.send "Okay, we've got #{rowNums.length} appointments today:\n" + rowYrBoatNerd + motivation
+        msg.send "We've got #{rowNums.length} appointments today:\n" + rowYrBoatNerd + motivation

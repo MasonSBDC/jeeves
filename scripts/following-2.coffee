@@ -84,7 +84,7 @@ module.exports = (robot) ->
        	  followUpYear = data.rows[rowNum].cells[followUpDateCol].value.slice(0,4)
        	  followUpFull = "#{followUpMonth}/#{followUpDate}/#{followUpYear}"
 
-          message += apptNum + ". #{employeeName}: follow up with #{clientName} by #{apptTime}. Reason: #{reason}.\n"
+          message += apptNum + ". #{employeeName}: follow up with #{clientName} by #{followUpFull}. Reason: #{reason}.\n"
 
         msg.send "Okay, we've got #{rowNums.length} clients that we've been following to-date:\n" + message
 

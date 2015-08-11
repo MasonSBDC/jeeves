@@ -80,7 +80,7 @@ module.exports = (robot) ->
           
           # Stylize the date.
           followUpMonth = Number(data.rows[rowNum].cells[followUpDateCol].value.slice(5,7))
-       	  followUpDate = data.rows[rowNum].cells[followUpDateCol].value.slice(8)
+       	  followUpDate = Number(data.rows[rowNum].cells[followUpDateCol].value.slice(8))
        	  followUpYear = data.rows[rowNum].cells[followUpDateCol].value.slice(0,4)
        	  followUpFull = "#{followUpMonth}/#{followUpDate}/#{followUpYear}"
 
