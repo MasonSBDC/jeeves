@@ -32,6 +32,7 @@ module.exports = (robot) ->
         data = JSON.parse(body)
         month = new Date().getMonth() + 1
         date = new Date().getDate()
+        year = new Date().getYear()
 
 				# Find the column the follow-up date is stored in.
         # NOTE: To run regular JS code, put it in tickmarks (`).
@@ -51,13 +52,14 @@ module.exports = (robot) ->
         	# followUpMonth is the month from the 'follow up plan date' column. Similar with followUpDate.
        	  followUpMonth = Number(row.cells[followUpDateCol].value.slice(5,7))
        	  followUpDate = Number(row.cells[followUpDateCol].value.slice(8))
+          followUpYear = Number(row.cells[followUpDateCol].value.slice(0,4))
        	  # If the follow-up date's month is greater than this month, report it.
        	  # ELSE if the follow-up date's month IS this month AND the follow-up date is greater than or
        	  # equal to today's date, report it.
        	  # Otherwise, do nothing.
-          if followUpMonth > month
+          if followUpMonth > month && followUpYear >= year
           	rowNums.push row.rowNumber - 1
-          else if followUpMonth == month && followUpDate >= date
+          else if followUpMonth == month && followUpDate >= date && followUpYear >= year
           	rowNums.push row.rowNumber - 1
           else
           	continue
@@ -86,5 +88,5 @@ module.exports = (robot) ->
 
           message += apptNum + ". #{employeeName}: follow up with #{clientName} by #{followUpFull}. Reason: #{reason}.\n"
 
-        msg.send "Okay, we've got #{rowNums.length} clients that we've been following to-date:\n" + message
+        msg.send "Okay, we've got #{rowNums.length} clients that we've been following to-date:\n" + message + "\n"
 
