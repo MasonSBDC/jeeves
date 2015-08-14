@@ -89,6 +89,6 @@ module.exports = (robot) ->
           else
             initialOrRepeat = "a " + initialOrRepeat
 
-          rowYrBoatNerd += apptNum + ". #{employeeName}: #{clientName}, #{initialOrRepeat} customer, at #{apptTime}.\n"
+          rowYrBoatNerd += apptNum + ". #{employeeName}: #{clientName}, #{initialOrRepeat} client, at #{apptTime}.\n"
         
         msg.send "We've got #{rowNums.length} appointments today:\n" + rowYrBoatNerd + motivation

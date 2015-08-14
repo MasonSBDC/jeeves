@@ -32,7 +32,7 @@ module.exports = (robot) ->
         data = JSON.parse(body)
         month = new Date().getMonth() + 1
         date = new Date().getDate()
-        year = new Date().getYear()
+        year = new Date().getFullYear()
 
 				# Find the column the follow-up date is stored in.
         # NOTE: To run regular JS code, put it in tickmarks (`).
