@@ -123,24 +123,29 @@ repo.
 
 ## Jeeves-specific scripts
 
+Currently, all of Jeeves' methods interact with the [Smartsheet API][ss-api-docs], but he
+will likely have other functions that interact with other things in the
+future.
+
+[ss-api-docs]: https://smartsheet-platform.github.io/api-docs/
+
 ### clients.coffee
 
-Tells the user info about our clients at Mason SBDC, such as their names.
+Tells the user what clients we have scheduled that day, who is meeting with
+the client, and what time the meeting is scheduled for.
+
+### debug.coffee
+
+Used for debugging Jeeves, so it contains some debug methods and scrap code.
+Not for use by mere mortals.
+
+### following.coffee
+
+Tells the user what clients we're following to-date and who is following them.
 
 ### smartsheet-help.coffee
 
-Some miscellaneous scripts for Smartsheet stuff, like checking the default
-document.
-
-##### Code Notes (because they took up so much comment space):
-
-Smartsheet API requires that the header contain 'Authorization: "Bearer
-<API key>"'. 'Accept' is something I saw on the blog of this guy who works at
-GitHub, so he probably knows what he's doing.
-
-.get(): The GET request. err = possible error, res = response specified in
-ss-default's constructor, body = the info from Smartsheet in JSON format.
-'data' contains the info from Smartsheet in JSON format.
+Contains Jeeves' sense of humor and some miscellaneous scripts.
 
 ##  Persistence
 
@@ -192,42 +197,6 @@ You'll need to edit the `Procfile` to set the name of your hubot.
 
 More detailed documentation can be found on the [deploying hubot onto
 Heroku][deploy-heroku] wiki page.
-
-### Deploying to UNIX or Windows
-
-If you would like to deploy to either a UNIX operating system or Windows.
-Please check out the [deploying hubot onto UNIX][deploy-unix] and [deploying
-hubot onto Windows][deploy-windows] wiki pages.
-
-[heroku-node-docs]: http://devcenter.heroku.com/articles/node-js
-[deploy-heroku]: https://github.com/github/hubot/blob/master/docs/deploying/heroku.md
-[deploy-unix]: https://github.com/github/hubot/blob/master/docs/deploying/unix.md
-[deploy-windows]: https://github.com/github/hubot/blob/master/docs/deploying/unix.md
-
-## Campfire Variables
-
-If you are using the Campfire adapter you will need to set some environment
-variables. If not, refer to your adapter documentation for how to configure it,
-links to the adapters can be found on [Hubot Adapters][hubot-adapters].
-
-Create a separate Campfire user for your bot and get their token from the web
-UI.
-
-    % heroku config:add HUBOT_CAMPFIRE_TOKEN="..."
-
-Get the numeric IDs of the rooms you want the bot to join, comma delimited. If
-you want the bot to connect to `https://mysubdomain.campfirenow.com/room/42`
-and `https://mysubdomain.campfirenow.com/room/1024` then you'd add it like
-this:
-
-    % heroku config:add HUBOT_CAMPFIRE_ROOMS="42,1024"
-
-Add the subdomain hubot should connect to. If you web URL looks like
-`http://mysubdomain.campfirenow.com` then you'd add it like this:
-
-    % heroku config:add HUBOT_CAMPFIRE_ACCOUNT="mysubdomain"
-
-[hubot-adapters]: https://github.com/github/hubot/blob/master/docs/adapters.md
 
 ## Restart the bot
 
