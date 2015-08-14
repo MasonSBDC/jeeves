@@ -1,2 +1,25 @@
-To set an environment variable:
-  heroku config:set HUBOT_VARIABLE_NAME=VALUE
+Okay, so this'll be for other kinds of notes, too. I should change that file name.
+
+HEROKU
+-To set an environment variable:
+--heroku config:set HUBOT_VARIABLE_NAME=VALUE
+
+FOLLOWING.COFFEE
+-Pre-run:
+--Sheet in focus: JW Clients We Are Following 2015 (aka: mainsheet)
+--Temporary sheet: following-temp-sheet (aka: tempsheet) (should only be viewable by me (and John?))
+-The process(1):
+--Delete all rows in tempsheet
+---Check if tempsheet has rows (for future-proofing)?
+--Populate tempsheet with last 10 rows of mainsheet
+--Check tempsheet for the clients and stuff and message results to user
+--CONCERNS: how to delete all rows?
+-The process(2):
+--Create tempsheet: following-temp-sheet (.post(), POST /sheets)
+--Populate tempsheet with last 10 rows of mainsheet(.post(), POST /sheets/{sheetId}/rows/copy)
+--Check tempsheet for clients and compile user message(.get(), GET /sheets/{sheetId}/rows/{rowId})
+--Delete tempsheet (.del(), DELETE /sheets/{sheetId})
+--Message user (message 'message', msg.send XXX)
+--CONCERNS: the msg.send command will still be in the robot.http method, but will
+			the message keep its value outside of the .get() method it was created
+			in?
